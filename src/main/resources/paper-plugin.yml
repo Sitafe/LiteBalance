@@ -1,0 +1,4 @@
+name: LiteBalance
+version: '0.1'
+main: sitafe.liteBalance.LiteBalance
+api-version: '1.21'
