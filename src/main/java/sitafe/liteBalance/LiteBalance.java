@@ -1,18 +1,20 @@
 package sitafe.liteBalance;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.CommandMap;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
-import java.util.List;
 
 public class LiteBalance extends JavaPlugin {
 
@@ -163,7 +165,17 @@ public class LiteBalance extends JavaPlugin {
 
         @Override
         public List<String> tabComplete(CommandSender sender, String alias, String[] args) {
-            return Collections.emptyList();
+            List<String> completions = new ArrayList<>();
+            if (args.length == 1) {
+                String partialName = args[0].toLowerCase();
+                for (Player player : Bukkit.getOnlinePlayers()) {
+                    String playerName = player.getName().toLowerCase();
+                    if (playerName.startsWith(partialName)) {
+                        completions.add(player.getName());
+                    }
+                }
+            }
+            return completions;
         }
     }
 
@@ -212,7 +224,17 @@ public class LiteBalance extends JavaPlugin {
 
         @Override
         public List<String> tabComplete(CommandSender sender, String alias, String[] args) {
-            return Collections.emptyList();
+            List<String> completions = new ArrayList<>();
+            if (args.length == 1) {
+                String partialName = args[0].toLowerCase();
+                for (Player player : Bukkit.getOnlinePlayers()) {
+                    String playerName = player.getName().toLowerCase();
+                    if (playerName.startsWith(partialName)) {
+                        completions.add(player.getName());
+                    }
+                }
+            }
+            return completions;
         }
     }
 }
